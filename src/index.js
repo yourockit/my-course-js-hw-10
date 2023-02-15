@@ -5,6 +5,7 @@ import { countriesMarkup, countryMarkup } from './js/markup';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 500;
+
 const refs = {
     input: document.querySelector('#search-box'),
     countryInfo: document.querySelector('.country-info'),
