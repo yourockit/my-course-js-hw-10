@@ -19,13 +19,14 @@ const fetchCountries = new QueryAPI();
 function onInputChange(e) {
     fetchCountries.query = e.target.value.trim();
     if (e.target.value === '') {
-        clear();
+        dataCleaning();
         return;
     };
     fetchCountries.fetchQuery()
         .then(countries => {
             if (countries.length > 10) {
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+                dataCleaning();
                 return;
             };
             if (countries.length > 1 && countries.length <= 10) {
@@ -41,12 +42,12 @@ function onInputChange(e) {
             };
         }).catch(error => {
             Notiflix.Notify.failure('Oops, there is no country with that name');
-            clear();
+            dataCleaning();
             return error;
         })
 };
 
-function clear() {
+function dataCleaning() {
     refs.countryInfo.innerHTML = '';
     refs.countryList.innerHTML = '';
 };
